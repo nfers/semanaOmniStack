@@ -1,13 +1,19 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const routes = require('../src/routes');
+
 
 const server = express();
-const bodyParser = 
 
-server.get('/', (req, res) => {
-    //return res.send(`Hello ${req.query.name}`); 
 
-});
+
+
+mongoose.connect('mongodb+srv://apicurso:Nfs12Mrc@clusterapi-6ummn.mongodb.net/tinderDev?retryWrites=true&w=majority', {
+    useNewUrlParser: true });
+
+server.use(express.json());
+server.use(routes);
 
 server.listen(3333);
 
