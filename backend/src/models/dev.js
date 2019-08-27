@@ -18,6 +18,7 @@ const DevSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Dev',
     }],
+<<<<<<< HEAD
     dislikes: [{
         type: Schema.Types.ObjectId,
         ref: 'Dev',
@@ -26,5 +27,15 @@ const DevSchema = new Schema({
     {
         timestamps: true,
     });
+=======
+    deslikes: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Dev',
+    }], 
+}, {
+    timestamps: true,
+});
+
+>>>>>>> e7061fa427dfa37c4f3ca1a621767cb88571079a
 
 module.exports = model('Dev', DevSchema);

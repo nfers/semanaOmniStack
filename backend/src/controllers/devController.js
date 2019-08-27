@@ -4,6 +4,7 @@ const Dev = require('../models/Dev')
 
 
 module.exports = {
+<<<<<<< HEAD
 
     async index(req, res) {
 
@@ -24,6 +25,25 @@ module.exports = {
 
     async store(req, res) {
 
+=======
+    async index(req, res) {
+        const { user } = req.headers;
+
+        const loggedDev = await Dev.findById(user);
+
+        const users = await Dev.find({
+            $and: [
+                { _id: { $ne: user } },
+                { _id: { $nin: loggedDev.likes } },
+                { _id: { $nin: loggedDev.deslikes } },
+            ],
+        })
+
+        return res.json(users);
+    },
+
+    async store(req, res) {        
+>>>>>>> e7061fa427dfa37c4f3ca1a621767cb88571079a
         const { username } = req.body;
 
         const userExists = await Dev.findOne({ user: username });

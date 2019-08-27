@@ -1,4 +1,3 @@
-const axios = require('axios');
 const Dev = require('../models/dev');
 
 module.exports ={
@@ -16,11 +15,8 @@ module.exports ={
             return res.status(400).json({ error: 'Desenvolvedor não existe'});
         }
 
-        if (targetDev.likes.includes(loggedDev._id)) {
-            console.log('Deu Match');
-        }
+        loggedDev.deslikes.push(targetDev._id);
 
-        loggedDev.likes.push(targetDev._id);
         await loggedDev.save();
 
         return res.json(loggedDev);
