@@ -10,7 +10,7 @@ module.exports = {
         var targetDev = await Dev.findById(devId);
 
         if (!targetDev)
-            return res.status(400).json({ error: 'Desenvolvedor escolhido não existe' });
+            return res.status(400).json({ error: 'Dev not exists' });
 
         loggedDev.dislikes.push(targetDev._id);
 

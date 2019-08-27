@@ -1,19 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const routes = require('../src/routes');
 const cors = require('cors');
 
+const connectioString = process.env.CONNECTIO_STRING || 'mongodb://localhost:27017/tindev';
 
+const port = process.env.PORT || 4000;
 const server = express();
 
+mongoose.connect(connectioString, {
+    useNewUrlParser: true,
+})
 
-mongoose.connect('mongodb+srv://apicurso:Nfs12Mrc@clusterapi-6ummn.mongodb.net/tinderDev?retryWrites=true&w=majority', {
-    useNewUrlParser: true });
+const routes = require('./routes')
 
+server.use(cors());
 server.use(express.json());
-server.use(cors()); 
 server.use(routes);
 
-server.listen(3333);
-
+server.listen(port, () => console.log(`Listening in port: ${port}`));

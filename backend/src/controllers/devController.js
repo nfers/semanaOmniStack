@@ -1,4 +1,5 @@
 const axios = require('axios');
+
 const Dev = require('../models/Dev')
 
 
@@ -8,13 +9,13 @@ module.exports = {
 
         const { user } = req.headers;
 
-        const devLogado = await Dev.findById(user);
+        const devLogged = await Dev.findById(user);
 
         const devs = await Dev.find({
             $and: [
                 { _id: { $ne: user } },
-                { _id: { $nin: devLogado.likes } },
-                { _id: { $nin: devLogado.dislikes } },
+                { _id: { $nin: devLogged.likes } },
+                { _id: { $nin: devLogged.dislikes } },
             ]
         })
 
@@ -26,6 +27,8 @@ module.exports = {
         const { username } = req.body;
 
         const userExists = await Dev.findOne({ user: username });
+
+        console.log(username)
 
         if (userExists)
             return res.json(userExists);
